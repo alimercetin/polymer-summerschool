@@ -1,0 +1,43 @@
+
+<link rel="import" href="../bower_components/polymer/polymer.html">
+<link rel="import" href="../bower_components/iron-flex-layout/iron-flex-layout.html">
+<link rel="import" href="mailbox-ripple-container.html">
+
+<dom-module id="mailbox-tab">
+  <template strip-whitespace>
+    <style>
+      [hidden] {
+        display: none !important;
+      }
+
+      :host {
+        display: inline-block;
+        position: relative;
+      }
+
+      #overlay {
+        pointer-events: none;
+        display: none;
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        @apply(--mailbox-tab-overlay);
+      }
+
+      :host(.mailbox-tabs-overlay-static-above) #overlay {
+        display: block;
+      }
+    </style>
+    <div id="overlay"></div>
+    <mailbox-ripple-container>
+      <content></content>
+    </mailbox-ripple-container>
+  </template>
+  <script>
+    Polymer({
+      is: 'mailbox-tab'
+    });
+  </script>
+</dom-module>

@@ -1,0 +1,55 @@
+<link rel="import" href="../bower_components/polymer/polymer.html">
+<link rel="import" href="../bower_components/iron-flex-layout/iron-flex-layout.html">
+
+<dom-module id="mailbox-list-item">
+
+  <template>
+
+    <style>
+
+      :host {
+        @apply(--layout-vertical);
+        @apply(--layout-center-justified);
+        text-align: center;
+        margin: 0 48px;
+      }
+
+      .subject {
+        color: var(--app-primary-color);
+        font-weight: bold;
+      }
+
+      .sender {
+        color: var(--app-secondary-color);
+      }
+
+      @media (max-width: 767px) {
+        :host {
+          margin: 0 12px;
+        }
+      }
+
+    </style>
+
+    <div class="subject">[[item.subject]]</div>
+    <span class="sender">From: [[item.from]]</span>
+
+  </template>
+
+  <script>
+
+    Polymer({
+
+      is: 'mailbox-list-item',
+
+      properties: {
+
+        item: Object
+
+      }
+
+    });
+
+  </script>
+
+</dom-module>

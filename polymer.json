@@ -1,0 +1,19 @@
+{
+  "entrypoint": "index.html",
+  "shell": "src/mailbox-app.html",
+  "fragments": [
+    "src/mailbox-list.html",
+    "src/mailbox-detail.html",
+    "src/lazy-resources.html"
+  ],
+  "sources": [
+   "src/**/*",
+   "data/**/*",
+   "images/**/*",
+   "bower.json"
+  ],
+  "extraDependencies": [
+    "manifest.json",
+    "bower_components/webcomponentsjs/webcomponents-lite.min.js"
+  ]
+}

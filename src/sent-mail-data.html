@@ -1,0 +1,87 @@
+<link rel="import" href="../bower_components/polymer/polymer.html">
+<link rel="import" href="../bower_components/app-storage/app-localstorage/app-localstorage-document.html">
+
+<dom-module id="sent-mail-data">
+
+  <template>
+    <app-localstorage-document key="sent-mail-data" data="{{sent}}"></app-localstorage-document>
+  </template>
+
+  <script>
+
+    Polymer({
+
+      is: 'sent-mail-data',
+
+      properties: {
+
+        sent: {
+          type: Array,
+          value: function() {
+            return [];
+          },
+          notify: true
+        },
+
+        numItems: {
+          type: Number,
+          computed: '_computeNumItems(send.splices)',
+          notify: true
+        },
+
+        total: {
+          type: Number,
+          computed: '_computeTotal(send.splices)',
+          notify: true
+        }
+
+      },
+
+      addItem: function(detail) {
+        var itemToAdd = {
+                          "subject":detail.subject,
+                          "category":"sent-mail",
+                          "from":detail.to,
+                          "description":detail.content
+                        }
+        this.push('sent', itemToAdd);
+      },
+
+      _computeNumItems: function() {
+        if (this.send) {
+          return this.send.reduce(function(total, entry) {
+            return total + entry.quantity;
+          }, 0);
+        }
+
+        return 0;
+      },
+
+      _computeTotal: function() {
+        if (this.send) {
+          return this.cart.reduce(function(total, entry) {
+            return total + entry.quantity * entry.item.price;
+          }, 0);
+        }
+
+        return 0;
+      },
+
+      _indexOfEntry: function(name, size) {
+        if (this.send) {
+          for (var i = 0; i < this.send.length; ++i) {
+            var entry = this.send[i];
+            if (entry.item.name === name && entry.size === size) {
+              return i;
+            }
+          }
+        }
+
+        return -1;
+      }
+
+    });
+
+  </script>
+
+</dom-module>
